@@ -5,11 +5,11 @@
   <div class="row">
     <div class="as_table">
       <div class="input-field col s6">
-        <input id="expires" type="text" class="validate" data-validation="custom" data-validation-regexp="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$" data-validation-require-leading-zero="false" value="<%= @expired.updated_at.localtime.strftime '%Y-%m-%d %H:%M:%S' %>">
+        <input id="expires" type="text" class="validate" data-validation="custom" data-validation-regexp="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$" data-validation-require-leading-zero="false" value="<%= @expired.updated_at.localtime.strftime '%Y-%m-%d %H:%M:%S' if @expired.present? %>">
         <label for="expires">Дата действия курса</label>
       </div>
       <div class="input-field col s6">
-        <input id="currency" type="text" class="validate" data-validation="custom" data-validation-regexp="^\d+(\.\d{1,2})?$" value="<%= @expired.currency %>">
+        <input id="currency" type="text" class="validate" data-validation="custom" data-validation-regexp="^\d+(\.\d{1,2})?$" value="<%= @expired.currency if @expired.present? %>">
         <label for="currency">Срочный курс</label>
       </div>
     </div>
