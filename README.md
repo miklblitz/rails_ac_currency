@@ -5,7 +5,7 @@ Exists page, which show currency widget: http://localhost:3003
 Exists admin page, where you can change currency until pointed datatime: http://localhost:3003/admin
 if time out, currency will rollback to pld value on currency widget
 
-h2 clone project
+### how it works
 
 * install rails 5.2.1 - for Ubuntu/Mint https://gorails.com/setup/ubuntu/16.04
 * install whenever - gem that provides a clear syntax for writing and deploying cron jobs https://github.com/javan/whenever
