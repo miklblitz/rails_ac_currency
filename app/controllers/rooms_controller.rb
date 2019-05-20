@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def admin
-    @expired = Currency.where(source: 'user').first
+    @expired = Currency.actual
   end
   
 end

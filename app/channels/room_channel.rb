@@ -13,8 +13,9 @@ class RoomChannel < ApplicationCable::Channel
     Currency.record_timestamps=false
     currency = Currency.where(source: 'user').first_or_initialize
     currency.currency = "%.2f" % data['currency']
+    currency.created_at = Time.now
     currency.updated_at = data['expired']
-    currency.source='user'
+    currency.source=1
     currency.save
     Currency.record_timestamps=true
 

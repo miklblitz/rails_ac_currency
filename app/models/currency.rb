@@ -16,7 +16,7 @@ class Currency < ApplicationRecord
         doc = Nokogiri::XML(open("http://www.floatrates.com/daily/rub.xml"))
         items = doc.xpath("//item//inverseRate")
         if items[0].present?
-            currency = self.where(source: 'cron').first_or_initialize
+            currency = self.where(source: 0).first_or_initialize
             currency.currency = "%.2f" % items[0].text
             currency.updated_at = Time.now
             currency.save
