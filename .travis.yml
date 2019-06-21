@@ -1,14 +1,20 @@
 language: ruby
+cache:
+- bundler
 rvm: 2.5.1
 before_install:
 - gem update --system
 - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
 - gem install bundler -v '1.17.2'
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
+- bundle exec rake db:seed
 deploy:
   provider: heroku
-  api_key: L3pogaLtckpMGR//PFQUCxOyLtA42DgBKD78VJQc78zyYxGKyEl7alJmw7a0WEu+pkGE8jQD335Ps1LMDQ9L31Gjk0pgkq+jisM3Wwn4LU11aBGzuYYcG0p846kveWd7EK8Fx0uCYdOZAagBIxmGQqrAn0wTzKx+OrJDhyjTZINRhbTJsJpGCYouqvLIO98qLvIRtAlp0CgPeshIfYLI+QIatIXpJMsk/MiuFuNv92vpvsay1DhJxTzbODAmGhAqUn7N2gnN8Vds+Ren+55lfybDpNxOGmltPzdCC37JH4EPMlyXNpnXRupJJflgVRYqymwtZI60/oSIuOftXo4hX2J6o13U7oYLBARJxLfKBqqw3H+7aS0aWbJR4Xg16JdRSKcXTfc3SpaPQRMWwHrpdnjEGSQ8kufN5bSh+yRrA5q7vs94ipdq1t3pAhg9rxqWZ9V7rTNb0bbrEMY5ptBy8E9UbSpwOsnXt44NHQ9N4p4zyOSlt8RlTVgqcRgmMxQDfS1YCaz3XfRI15pNcxxKtGxrdCBZhvkgOXrYy0mA0PJcZVLlSvE/O4xBTiirJ4/Fsh9XMrouufv3usNr9voUaQqtC2AQem6OH/Ys1jwoSx3jqVu9zw1hiXKTeBebLlmoVA2ThxRm0c+rxcuwnoHHfDp0e+GZ5txQJiFeI+TLmdY=
-  run:
-    - "rake db:migrate"
-    - "rake db:seed"
+  api_key: 
+    secure: L3pogaLtckpMGR//PFQUCxOyLtA42DgBKD78VJQc78zyYxGKyEl7alJmw7a0WEu+pkGE8jQD335Ps1LMDQ9L31Gjk0pgkq+jisM3Wwn4LU11aBGzuYYcG0p846kveWd7EK8Fx0uCYdOZAagBIxmGQqrAn0wTzKx+OrJDhyjTZINRhbTJsJpGCYouqvLIO98qLvIRtAlp0CgPeshIfYLI+QIatIXpJMsk/MiuFuNv92vpvsay1DhJxTzbODAmGhAqUn7N2gnN8Vds+Ren+55lfybDpNxOGmltPzdCC37JH4EPMlyXNpnXRupJJflgVRYqymwtZI60/oSIuOftXo4hX2J6o13U7oYLBARJxLfKBqqw3H+7aS0aWbJR4Xg16JdRSKcXTfc3SpaPQRMWwHrpdnjEGSQ8kufN5bSh+yRrA5q7vs94ipdq1t3pAhg9rxqWZ9V7rTNb0bbrEMY5ptBy8E9UbSpwOsnXt44NHQ9N4p4zyOSlt8RlTVgqcRgmMxQDfS1YCaz3XfRI15pNcxxKtGxrdCBZhvkgOXrYy0mA0PJcZVLlSvE/O4xBTiirJ4/Fsh9XMrouufv3usNr9voUaQqtC2AQem6OH/Ys1jwoSx3jqVu9zw1hiXKTeBebLlmoVA2ThxRm0c+rxcuwnoHHfDp0e+GZ5txQJiFeI+TLmdY=
+  app: rails-ac-currency
   on:
-      all_branches: true
+      repo: miklblitz/rails_ac_currency
